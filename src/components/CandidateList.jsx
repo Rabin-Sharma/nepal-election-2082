@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import CandidateCard from './CandidateCard';
+import CandidateModal from './CandidateModal';
 
 const CandidateList = ({ candidates, loading, currentPage, totalPages, onPageChange }) => {
+  const [selectedCandidate, setSelectedCandidate] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCardClick = (candidate) => {
+    setSelectedCandidate(candidate);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCandidate(null);
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center py-20">
@@ -23,9 +37,20 @@ const CandidateList = ({ candidates, loading, currentPage, totalPages, onPageCha
       {/* Candidates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
         {candidates.map((candidate) => (
-          <CandidateCard key={candidate.CandidateID} candidate={candidate} />
+          <CandidateCard 
+            key={candidate.CandidateID} 
+            candidate={candidate} 
+            onClick={handleCardClick}
+          />
         ))}
       </div>
+
+      {/* Candidate Detail Modal */}
+      <CandidateModal 
+        candidate={selectedCandidate}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
 
       {/* Pagination */}
       {totalPages > 1 && (

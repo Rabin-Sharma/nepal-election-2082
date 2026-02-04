@@ -225,21 +225,29 @@ const Dashboard = ({ candidates }) => {
   };
 
   // Summary stats
-  const stats = useMemo(() => ({
-    total: candidates.length,
-    states: new Set(candidates.map(c => c.StateName)).size,
-    districts: new Set(candidates.map(c => c.DistrictName)).size,
-    parties: new Set(candidates.map(c => c.PoliticalPartyName)).size,
-    avgAge: Math.round(candidates.reduce((sum, c) => sum + (c.AGE_YR || 0), 0) / candidates.length),
-  }), [candidates]);
+  const stats = useMemo(() => {
+    const genderCounts = candidates.reduce((acc, c) => {
+      if (c.Gender === 'Male') acc.male++;
+      else if (c.Gender === 'Female') acc.female++;
+      return acc;
+    }, { male: 0, female: 0 });
+    
+    return {
+      total: candidates.length,
+      male: genderCounts.male,
+      female: genderCounts.female,
+      parties: new Set(candidates.map(c => c.PoliticalPartyName)).size,
+      avgAge: Math.round(candidates.reduce((sum, c) => sum + (c.AGE_YR || 0), 0) / candidates.length),
+    };
+  }, [candidates]);
 
   return (
     <div className="space-y-6">
       {/* Summary Cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         <StatCard title="कुल उम्मेदवार" value={stats.total} color="bg-primary" />
-        <StatCard title="प्रदेश" value={stats.states} color="bg-emerald-500" />
-        <StatCard title="जिल्ला" value={stats.districts} color="bg-amber-500" />
+        <StatCard title="पुरुष" value={stats.male} color="bg-sky-500" />
+        <StatCard title="महिला" value={stats.female} color="bg-pink-500" />
         <StatCard title="राजनीतिक दल" value={stats.parties} color="bg-purple-500" />
         <StatCard title="औसत उमेर" value={`${stats.avgAge} वर्ष`} color="bg-rose-500" />
       </div>

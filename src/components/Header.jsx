@@ -7,6 +7,13 @@ const Header = ({ totalCandidates, filteredCount, currentPath }) => {
       <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="flex items-center gap-6">
+            {/* Logo */}
+            <img 
+              src="/images/logo.png" 
+              alt="Logo" 
+              className="h-12 w-12 object-contain"
+            />
+            
             <div>
               <h1 className="text-2xl font-bold text-text-primary">
                 उम्मेदवार सूची

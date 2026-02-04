@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
-const CandidateCard = ({ candidate }) => {
+const CandidateCard = ({ candidate, onClick }) => {
   const [imageError, setImageError] = useState(false);
   
   const imageUrl = `https://result.election.gov.np/Images/Candidate/${candidate.CandidateID}.jpg`;
   const fallbackImage = 'https://via.placeholder.com/150?text=No+Image';
 
   return (
-    <div className="bg-surface rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-border flex">
+    <div 
+      className="bg-surface rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-border flex cursor-pointer hover:border-primary/50 hover:scale-[1.02]"
+      onClick={() => onClick(candidate)}
+    >
       {/* Image Section */}
       <div className="relative flex-shrink-0 w-36 bg-gray-100">
         <img
