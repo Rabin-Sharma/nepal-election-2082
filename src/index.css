@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #2563eb;
+  --color-primary-dark: #1d4ed8;
+  --color-secondary: #64748b;
+  --color-accent: #0ea5e9;
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-border: #e2e8f0;
+  --color-error: #ef4444;
+}
+
+@theme inline {
+  --color-primary: var(--color-primary);
+  --color-primary-dark: var(--color-primary-dark);
+  --color-secondary: var(--color-secondary);
+  --color-accent: var(--color-accent);
+  --color-background: var(--color-background);
+  --color-surface: var(--color-surface);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-border: var(--color-border);
+  --color-error: var(--color-error);
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card-image {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
