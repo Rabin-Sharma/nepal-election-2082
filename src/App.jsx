@@ -4,6 +4,7 @@ import Header from './components/Header';
 import SearchFilter from './components/SearchFilter';
 import CandidateList from './components/CandidateList';
 import Dashboard from './components/Dashboard';
+import { Analytics } from "@vercel/analytics/react"
 
 const ITEMS_PER_PAGE = 12;
 
@@ -210,6 +211,7 @@ const App = () => {
           } />
         </Routes>
       </main>
+      <Analytics />
     </div>
   );
 };
