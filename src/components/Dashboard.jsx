@@ -227,8 +227,8 @@ const Dashboard = ({ candidates }) => {
   // Summary stats
   const stats = useMemo(() => {
     const genderCounts = candidates.reduce((acc, c) => {
-      if (c.Gender === 'Male') acc.male++;
-      else if (c.Gender === 'Female') acc.female++;
+      if (c.Gender === 'पुरुष') acc.male++;
+      else if (c.Gender === 'महिला') acc.female++;
       return acc;
     }, { male: 0, female: 0 });
     
